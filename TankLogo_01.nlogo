@@ -498,7 +498,7 @@ INPUTBOX
 1273
 461
 TankName
-red tank
+blue tank
 1
 0
 String
