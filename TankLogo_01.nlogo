@@ -297,41 +297,162 @@ to bullet-check-collision
 end
 
 ;;The following procedures must be defined by the user-----------------------------------
-to tank-prepare-red
-  ;;tank rotation
+;; 坦克运行的有限状态机实现
+;; ======== 状态1 【前进状态】=========
+to status-forward[v]
+  if((item 0 v) != nobody)[
+    set velocity (item 0 v)
+  ]
   set degree 0
-  ;set degree random-float 21 - 10
-  ;;tank acceleration
-  set acceleration random 3 - 1
-  ;;turret
+  set acceleration random-float 1 - 3 ;是否随机加速度，避免敌人炮台追踪
+  fd velocity
+end
+
+to status-random-forward[tickNum]
+  if ((item 0 tickNum) != nobody)[
+    if (ticks mod (item 0 tickNum) = 0)[set heading random-float 360]
+  ]
+end
+
+;; ======== 状态2 【后退状态】=========
+to status-back
+  set heading degree + 180
+  bk velocity
+end
+
+;; ======== 状态3 【左转状态】=========
+to status-left
+  set heading degree + 90
+  lt velocity
+end
+
+;; ======== 状态4 【右转状态】=========
+to status-right
+  set heading degree - 90
+  rt velocity
+end
+
+;; ======== 状态5 【静止状态】=========
+to status-stop
+  set degree 0
+  set acceleration 0
+  set velocity 0
+  fd 0
+end
+
+;; ======== 状态6 【静止转弯状态】=========
+to status-stop-turn-wall
+  let tempDirection (random-float 360)
+  if((patch-at-heading-and-distance tempDirection 1) != nobody)[
+    ask patch-at-heading-and-distance tempDirection 1 [
+      if (pcolor != yellow)[
+        ask myself[
+          set heading tempDirection
+          fd velocity
+        ]
+      ]
+    ]
+  ]
+end
+
+to status-stop-turn-tank
+  let tks other Tanks with [distance myself > TankSize]
+  if(patch-at-heading-and-distance heading 2 != nobody)[
+    ask patch-at-heading-and-distance heading 2 [
+      if (pcolor = black)[
+        ask myself[
+          status-random-lrb
+          if item 0 [velocity] of tks != nobody [
+            fd (item 0 [velocity] of tks)
+          ]
+        ]
+      ]
+    ]
+  ]
+end
+
+;; ======== 状态7 【随机左右状态】=========
+to status-random-lrb
+  let direction random 180
+  if (direction > 0 and direction < 60)[status-left]
+  if (direction > 60 and direction < 120)[status-right]
+  if (direction > 120)[status-back]
+end
+
+;; ======== 状态8 【躲避对方坦克状态】========
+to status-dodge-forward[args]
+  let tks other Tanks with [distance myself > TankSize]
+  if count tks > 0[
+    ifelse ticks < 100 [
+      status-random-forward[101]
+    ][
+      ifelse(ticks mod (item 0 args) = 0)[
+        let tempNum random 100
+        ifelse (tempNum mod 2 = 0)[
+          set heading ([heading] of (item 0 [myTurret] of tks)  + 90)
+        ][
+          set heading ([heading] of (item 0 [myTurret] of tks) - 90)
+        ]
+      ][status-forward[0.01]]
+    ]
+  ]
+end
+
+;; ========【扫描蓝色坦克方位】=========
+to-report status-scan
+  report [patch-here] of TankBlue
+end
+
+;; ======== 【设置每一个 tick 坦克的运动模式】=========
+to tank-prepare-red
+  let tks other Tanks with [distance myself < TankSize + 3]
+  ifelse count tks > 0 [status-stop-turn-tank][status-forward[0.01]]
+  status-dodge-forward[500]
+
+  ask patches with [distance myself < 2 and pcolor = yellow][
+    ask myself[
+      status-stop-turn-wall
+    ]
+  ]
+
   ask myTurret [
-    ;;rotation
-    set degree random-float 41 - 20
-    ;;fire?
+    let enemys other Tanks with [distance myself > TankSize] ;with [distance myself < TankSize + 10] ;等到敌人进入距离自己 10(假)再攻击他们
+    if(count enemys > 0)[
+      if (item 0 ([patch-ahead 5] of enemys) != nobody)[
+        facexy ([pxcor] of item 0 ([patch-ahead 5] of enemys)) ([pycor] of item 0 ([patch-ahead 5] of enemys))
+      ]
+    ]
     set fire? true
   ]
 end
 
 to tank-prepare-blue
-  ;;tank rotation
-  set degree 0
-  ;set degree random-float 21 - 10
-  ;;tank acceleration
-  set acceleration random 3 - 1
-  ;;turret
+  let tks other Tanks with [distance myself < TankSize + 3]
+  ifelse count tks > 0 [status-stop-turn-tank][status-forward[0.01]]
+  status-random-forward[700]
+
+  ask patches with [distance myself < 2 and pcolor = yellow][
+    ask myself[
+      status-stop-turn-wall
+    ]
+  ]
+
   ask myTurret [
-    ;;rotation
-    set degree random-float 41 - 20
-    ;;fire?
+    let enemys other Tanks with [distance myself > TankSize] ;with [distance myself < TankSize + 10] ;等到敌人进入距离自己 10(假)再攻击他们
+    if(count enemys > 0)[
+      if (item 0 ([patch-ahead 5] of enemys) != nobody)[
+        facexy ([pxcor] of item 0 ([patch-ahead 5] of enemys)) ([pycor] of item 0 ([patch-ahead 5] of enemys))
+      ]
+    ]
     set fire? true
   ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-647
-448
+310
+24
+747
+462
 -1
 -1
 13.0
@@ -348,17 +469,17 @@ GRAPHICS-WINDOW
 16
 -16
 16
-0
-0
+1
+1
 1
 ticks
 30.0
 
 BUTTON
-33
-29
-99
-62
+763
+271
+864
+304
 NIL
 setup
 NIL
@@ -372,21 +493,21 @@ NIL
 1
 
 INPUTBOX
-33
-80
-118
-141
+1100
+400
+1273
+461
 TankName
-b
+red tank
 1
 0
 String
 
 BUTTON
-658
-63
-794
-97
+824
+26
+960
+71
 Create Red Tank
 obs-create-tank red 1
 NIL
@@ -400,10 +521,10 @@ NIL
 1
 
 BUTTON
-62
-413
-204
-447
+95
+419
+237
+461
 Create Blue Tank
 obs-create-tank blue 5
 NIL
@@ -417,25 +538,25 @@ NIL
 1
 
 SLIDER
-33
-153
-206
-186
+1099
+314
+1272
+347
 FirePower
 FirePower
 1
 5
-1.0
+2.0
 1
 1
 NIL
 HORIZONTAL
 
 BUTTON
-36
-239
-100
-273
+985
+269
+1088
+303
 go
 obs-go
 T
@@ -449,10 +570,10 @@ NIL
 1
 
 BUTTON
-36
-197
-102
-231
+873
+270
+978
+304
 reset
 obs-reset
 NIL
@@ -466,10 +587,10 @@ NIL
 1
 
 MONITOR
-146
-362
-204
-407
+245
+416
+303
+461
 Win
 [wins] of TankBlue
 17
@@ -477,10 +598,10 @@ Win
 11
 
 MONITOR
-658
-12
-716
-57
+758
+26
+816
+71
 Win
 [wins] of TankRed
 17
@@ -488,10 +609,10 @@ Win
 11
 
 PLOT
-659
-299
-991
-449
+759
+313
+1091
+463
 Health
 NIL
 NIL
@@ -505,10 +626,10 @@ true
 PENS
 
 SWITCH
-38
-287
-180
-320
+1100
+358
+1271
+391
 LeaveTrack?
 LeaveTrack?
 0
@@ -874,7 +995,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.4
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
