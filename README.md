@@ -9,11 +9,11 @@ You can see two kinds of tank here:
 - The Red one
 - The Blue one
 
-In this project, the blue tank has a temporary strongest strategy, which means it is very strong and you may lose it easily. You can not modify the code of the blue one, but you can modify the red one, and make it better than the blue one.
+In this project, the red tank has a temporary strongest strategy, which means it is very strong and you may lose it easily. You can not modify the code of the red one, but you can modify the blue one, and make it better than the red one.
 
 __If you have made your own red tank stronger than the blue tank__, You win! :collision:
 
-You can submit your tank strategy (yours red tank code) through a pull request, and we will update our blue tank code according to your red tank code until there is another better red tank to strategy beat it. During this time, your github id and avatar will shown in the `README.md` here.
+You can submit your tank strategy (yours blue tank code) through a pull request, and we will update our red tank code according to your blue tank code until there is another better blue tank to strategy beat yours. During this time, your github id and avatar will displaied in the `README.md` here.
 
 It's like a game of fighting, let's cheer, the first place is yours!
 
@@ -47,4 +47,14 @@ The finite element state machine was used for the core part of this tank war gam
 - In status `status-back`, `status-right`, `status-left` and `status-stop`, the tank will go back, turn right/left and just stop.
 - `status-random-forward[tickNum]` allows the tank to move forward at a random direction in a fixed time interval, which is can be set by input paramemter `tickNum`.
 - `status-dodge-forward[args]` is a pretty tricky status, if other tank shooting by aiming at your tank, the best dodge strategy is to move in a direction perpendicular to its direction of motion, since the bullet has a delay before hitting yours.
+
+
+### Contribution Guides
+
+The NetLogo is a pretty easy programming language, we wish you can get start as soon as possible, so if you have any question about NetLogo, please check out for the official [document](http://ccl.northwestern.edu/netlogo/docs/index2.html).
+
+In this project, the only area you can modify are marked in the code via comments, you cannot make any changes related to the red tank, or we wouldn't accept your PR and update yours strategy. 
+
+In your code, you can not modify the opponent's attributes, such as resetting the health and velocity of the red tank, but you can detect others' attributes. For example, you can detect the patch of the red code using `patch-here`.
+
 
