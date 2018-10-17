@@ -340,7 +340,7 @@ to status-stop
 end
 
 ;; ======== status-6 【find direction status】=========
-;; find a safe direction before hitting on the wall or other tanks. 
+;; find a safe direction before hitting on the wall or other tanks.
 to status-stop-turn-wall
   let tempDirection (random-float 360)
   if((patch-at-heading-and-distance tempDirection 1) != nobody)[
@@ -396,11 +396,6 @@ to status-dodge-forward[args]
       ][status-forward[0.01]]
     ]
   ]
-end
-
-;; ========【scan the blue tank's location】=========
-to-report status-scan
-  report [patch-here] of TankBlue
 end
 
 ;; ======== 【set the moving status per tick】=========
@@ -499,7 +494,7 @@ INPUTBOX
 1273
 461
 TankName
-blue tank
+red tank
 1
 0
 String
