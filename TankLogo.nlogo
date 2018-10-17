@@ -1,3 +1,6 @@
+;; ================================================================================================
+;; =================================== Don't make changes here ====================================
+;; ================================================================================================
 breed [redTanks redTank]
 breed [blueTanks blueTank]
 breed [turrets turret]
@@ -17,7 +20,6 @@ redTanks-own [
   degree  ;;Degree to rotate the tank
   acceleration  ;;Indicator of acceleration: -1 for decelerate, 1 for accelerate, 0 for none
 
-  ;;Users can define their own variables here--------------------------------
 ]
 
 blueTanks-own [
@@ -296,7 +298,17 @@ to bullet-check-collision
   if pcolor = yellow [die]
 end
 
-;;The following procedures must be defined by the user-----------------------------------
+;; ================================================================================================
+;; =================================== Don't make changes above ===================================
+;; ================================================================================================
+
+;; ================================================================================================
+;; = The following code drives the 'best' red tank,
+;; = all you need is to make your blue tank better than it!
+;; =
+;; = You can not make change related to the red tank here.
+;; =================================================================================================
+
 ;; ======== status-1 【move forward status】=========
 to status-forward[v]
   if((item 0 v) != nobody)[
@@ -422,6 +434,22 @@ to tank-prepare-red
   ]
 end
 
+;; ================================================================================================
+;; =================================== Don't make changes above ===================================
+;; ================================================================================================
+
+
+
+;; ===========================================================================================================================
+;; =================================== The following procedures can be defined by the use ====================================
+;; ===========================================================================================================================
+
+;; You can build your tank here! and free to write new functions!
+;; If you can beat the red tank (test over 100 times, if you win over 70% of the games, please send us a PR)
+;; We will update the 'abest tank' as you designed, and your github avatar is and id will display in our github page.
+
+;; ===========================================================================================================================
+
 to tank-prepare-blue
   let tks other Tanks with [distance myself < TankSize + 3]
   ifelse count tks > 0 [status-stop-turn-tank][status-forward[0.01]]
@@ -494,7 +522,7 @@ INPUTBOX
 1273
 461
 TankName
-red tank
+blue tank
 1
 0
 String
