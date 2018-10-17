@@ -297,8 +297,7 @@ to bullet-check-collision
 end
 
 ;;The following procedures must be defined by the user-----------------------------------
-;; 坦克运行的有限状态机实现
-;; ======== 状态1 【前进状态】=========
+;; ======== status-1 【move forward status】=========
 to status-forward[v]
   if((item 0 v) != nobody)[
     set velocity (item 0 v)
@@ -314,25 +313,25 @@ to status-random-forward[tickNum]
   ]
 end
 
-;; ======== 状态2 【后退状态】=========
+;; ======== status-2 【move back status】=========
 to status-back
   set heading degree + 180
   bk velocity
 end
 
-;; ======== 状态3 【左转状态】=========
+;; ======== status-3 【turn left status】=========
 to status-left
   set heading degree + 90
   lt velocity
 end
 
-;; ======== 状态4 【右转状态】=========
+;; ======== status-4 【turn right status】=========
 to status-right
   set heading degree - 90
   rt velocity
 end
 
-;; ======== 状态5 【静止状态】=========
+;; ======== status-5 【stop status】=========
 to status-stop
   set degree 0
   set acceleration 0
@@ -340,7 +339,8 @@ to status-stop
   fd 0
 end
 
-;; ======== 状态6 【静止转弯状态】=========
+;; ======== status-6 【find direction status】=========
+;; find a safe direction before hitting on the wall or other tanks. 
 to status-stop-turn-wall
   let tempDirection (random-float 360)
   if((patch-at-heading-and-distance tempDirection 1) != nobody)[
@@ -371,7 +371,7 @@ to status-stop-turn-tank
   ]
 end
 
-;; ======== 状态7 【随机左右状态】=========
+;; ======== status-7 【random turn left/right status】=========
 to status-random-lrb
   let direction random 180
   if (direction > 0 and direction < 60)[status-left]
@@ -379,7 +379,7 @@ to status-random-lrb
   if (direction > 120)[status-back]
 end
 
-;; ======== 状态8 【躲避对方坦克状态】========
+;; ======== status-8 【dodge other's attack status】========
 to status-dodge-forward[args]
   let tks other Tanks with [distance myself > TankSize]
   if count tks > 0[
@@ -398,12 +398,13 @@ to status-dodge-forward[args]
   ]
 end
 
-;; ========【扫描蓝色坦克方位】=========
+;; ========【scan the blue tank's location】=========
 to-report status-scan
   report [patch-here] of TankBlue
 end
 
-;; ======== 【设置每一个 tick 坦克的运动模式】=========
+;; ======== 【set the moving status per tick】=========
+;; this function will be called every ticks, we should set up the status machine here.
 to tank-prepare-red
   let tks other Tanks with [distance myself < TankSize + 3]
   ifelse count tks > 0 [status-stop-turn-tank][status-forward[0.01]]
@@ -416,7 +417,7 @@ to tank-prepare-red
   ]
 
   ask myTurret [
-    let enemys other Tanks with [distance myself > TankSize] ;with [distance myself < TankSize + 10] ;等到敌人进入距离自己 10(假)再攻击他们
+    let enemys other Tanks with [distance myself > TankSize] ;with [distance myself < TankSize + 10];
     if(count enemys > 0)[
       if (item 0 ([patch-ahead 5] of enemys) != nobody)[
         facexy ([pxcor] of item 0 ([patch-ahead 5] of enemys)) ([pycor] of item 0 ([patch-ahead 5] of enemys))
