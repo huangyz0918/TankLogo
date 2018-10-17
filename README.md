@@ -57,6 +57,8 @@ In this project, the only area you can modify are marked in the code via comment
 
 In your code, you can not modify the opponent's attributes, such as resetting the health and velocity of the red tank, but you can detect others' attributes. For example, you can detect the patch of the red code using `patch-here`.
 
+To do some contributions, you need to install NetLogo firstly then clone your fork, double click the `TankLogo.nlogo` and run!
+
 ### Current Winner
 
 |![](https://github.com/huangyz0918.png?size=60)|
