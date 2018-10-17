@@ -59,6 +59,8 @@ In your code, you can not modify the opponent's attributes, such as resetting th
 
 ### Current Winner
 
-![[huangyz0918](https://github.com/huangyz0918)](https://github.com/huangyz0918.png?size=60)
+|![](https://github.com/huangyz0918.png?size=60)|
+|:----:|
+|[huangyz0918](https://github.com/huangyz0918)|
 
 
