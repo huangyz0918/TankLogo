@@ -18,7 +18,7 @@ You can submit your tank strategy (yours blue tank code) through a [pull request
 It's like a game of fighting, let's cheer, the first place is yours!
 
 
-### What's NetLogo ?
+## What's NetLogo ?
 You can checkout for more information at it's [homepage](https://ccl.northwestern.edu/netlogo/).
 
 Here is the definition of NetLogo programming language from [wikipedia](https://en.wikipedia.org/wiki/NetLogo):
@@ -28,7 +28,7 @@ Here is the definition of NetLogo programming language from [wikipedia](https://
 After all, it's a very easy programming language which can let you focus more on the programming logic of our battles.
 
 
-### The Tank Battle Strategy
+## The Tank Battle Strategy
 
 ![](https://i.loli.net/2018/10/17/5bc6c7486353e.png)
 
@@ -49,7 +49,7 @@ The finite element state machine was used for the core part of this tank war gam
 - `status-dodge-forward[args]` is a pretty tricky status, if other tank shooting by aiming at your tank, the best dodge strategy is to move in a direction perpendicular to its direction of motion, since the bullet has a delay before hitting yours.
 
 
-### Contribution Guides
+## Contribution Guides
 
 The NetLogo is a pretty easy programming language, we wish you can get start as soon as possible, so if you have any question about NetLogo, please check out for the official [document](http://ccl.northwestern.edu/netlogo/docs/index2.html).
 
@@ -59,13 +59,26 @@ In your code, you can not modify the opponent's attributes, such as resetting th
 
 To do some contributions, you need to install NetLogo firstly then clone your fork, double click the `TankLogo.nlogo` and run!
 
-### Current Winner
+## FAQ
+Why choose NetLogo as programming language? 
+> Because NetLogo is quick easy and there are less people know how to use it than other languages, so if you want to get start, everybody is equal.
+
+How can I get start ?
+> Two steps, the first is install NetLogo. The second one is clone this repo and double click the .nlogo file and improve the tank.
+
+How can I get if I win your tank ?
+> The best tank will update according to your solution, and your Github avatar and name will display until somebody beat yours.
+
+How to submit my solution ?
+> fork this repo and improve your code, test if it can really win my tank, submit a pull request, done!
+
+## Current Winner
 
 |![](https://github.com/huangyz0918.png?size=60)|
 |:----:|
 |[huangyz0918](https://github.com/huangyz0918)|
 
-### Licence
+## Licence
 
 ```
    Copyright 2018 Yizheng Huang
