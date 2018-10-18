@@ -72,11 +72,12 @@ How can I get if I win your tank ?
 How to submit my solution ?
 > fork this repo and improve your code, test if it can really win my tank, submit a pull request, done!
 
-## Current Winner
-
+<!-- ## Current Winner -->
+<!--
 |![](https://github.com/huangyz0918.png?size=60)|
 |:----:|
 |[huangyz0918](https://github.com/huangyz0918)|
+-->
 
 ## Licence
 
