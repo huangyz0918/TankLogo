@@ -39,7 +39,7 @@ Introduction to the UI:
 - The `go` button: Start animation and confrontation.
 - You can use the `TankName` to put a name for your tank before creating it.
 - You can set the `FirePower` through the progress bar, which is the power of per bullet.
-- If you want to watch the tarck of tanks, you can set the `LeaveTrack?` to `on`.
+- If you want to watch the track of tanks, you can set the `LeaveTrack?` to `on`.
 
 The finite element state machine was used for the core part of this tank war game. We set the default status to `status-forward[v]` , `status-dodge-forward[args]` or `status-random-forward[tickNum]`, they have diffierent characteristics and downsides:
 
