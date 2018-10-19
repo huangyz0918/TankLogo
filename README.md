@@ -71,7 +71,7 @@ To do some contributions, you need to install NetLogo firstly then clone your fo
 
 ## FAQ
 Why choose NetLogo as programming language? 
-> Because NetLogo is quick easy and there are less people know how to use it than other languages, so if you want to get start, everybody is equal.
+> Because NetLogo is quite easy and there are less people know how to use it than other languages, so if you want to get start, everybody is equal.
 
 How can I get start ?
 > Two steps, the first is install NetLogo. The second one is clone this repo and double click the .nlogo file and improve the tank.
