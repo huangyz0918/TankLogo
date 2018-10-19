@@ -70,14 +70,17 @@ How can I get if I win your tank ?
 > The best tank will update according to your solution, and your Github avatar and name will display until somebody beat yours.
 
 How to submit my solution ?
-> fork this repo and improve your code, test if it can really win my tank, submit a pull request, done!
+> Fork this repo and improve your code, test if it can really win my tank, submit a pull request, done!
 
-<!-- ## Current Winner -->
-<!--
+If I don't want to install NetLogo, how can I get start?
+> You can use [NetLogo Web](http://www.netlogoweb.org/launch#https://raw.githubusercontent.com/huangyz0918/TankLogo/master/TankLogo.nlogo) to run your code.
+
+## Current Winner 
+
 |![](https://github.com/huangyz0918.png?size=60)|
 |:----:|
 |[huangyz0918](https://github.com/huangyz0918)|
--->
+
 
 ## Licence
 
