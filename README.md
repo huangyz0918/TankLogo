@@ -3,7 +3,7 @@
 
 A tank war strategy built by [NetLogo](https://ccl.northwestern.edu/netlogo/). Share your ideas and strategies and win the game!
 
-Want to have a try? See [Demo](http://www.netlogoweb.org/launch#https://raw.githubusercontent.com/huangyz0918/TankLogo/master/TankLogo.nlogo).
+Want to have a try? See [demo](http://www.netlogoweb.org/launch#https://raw.githubusercontent.com/huangyz0918/TankLogo/master/TankLogo.nlogo).
 
 ![](https://i.loli.net/2018/10/17/5bc6eeb182cf0.png)
 
