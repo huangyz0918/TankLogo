@@ -20,7 +20,7 @@ You can submit your tank strategy (yours blue tank code) through a [pull request
 It's like a game of fighting, let's cheer, the first place is yours!
 
 
-## What's NetLogo ?
+## What's NetLogo?
 You can checkout for more information at it's [homepage](https://ccl.northwestern.edu/netlogo/).
 
 Here is the definition of NetLogo programming language from [wikipedia](https://en.wikipedia.org/wiki/NetLogo):
@@ -28,6 +28,14 @@ Here is the definition of NetLogo programming language from [wikipedia](https://
 > NetLogo was designed, by Uri Wilensky, in the spirit of the Logo programming language, to be "low threshold and no ceiling". It teaches programming concepts using agents in the form of turtles, patches, links and the observer. NetLogo was designed for multiple audiences in mind, in particular: teaching children in the education community, and for domain experts without a programming background to model related phenomena. Many scientific articles have been published using NetLogo.
 
 After all, it's a very easy programming language which can let you focus more on the programming logic of our battles.
+
+## How to get start?
+- Install NetLogo in your machine or using the [NetLogo Web](http://www.netlogoweb.org/launch#https://raw.githubusercontent.com/huangyz0918/TankLogo/master/TankLogo.nlogo).
+- Open the `TankLogo.nlogo` file (upload to the web server or double click in your computer).
+- See the UI, and click the `setup` button, and you can see the yellow boundary which means the wall.
+- Type a name for the red tank (or the blue one) in the `TankName` (input box), and click `create tank` button.
+- Type another name for the another tank in `TankName` (input box), and click `create tank` button to create it.
+- Use button `run` to begin the battle, use `reset` button to restart a game.
 
 
 ## The Tank Battle Strategy
