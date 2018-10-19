@@ -1,5 +1,5 @@
 # TankLogo
-[![platform](https://img.shields.io/badge/platform-netlogo-red.svg)](https://shields.io/) [![contributions](https://img.shields.io/badge/contributions-welcome-green.svg)](https://github.com/huangyz0918/TankNetLogo) 
+[![platform](https://img.shields.io/badge/platform-netlogo-blue.svg)](https://shields.io/) [![contributions](https://img.shields.io/badge/contributions-welcome-green.svg)](https://github.com/huangyz0918/TankNetLogo) 
 
 A tank war strategy built by [NetLogo](https://ccl.northwestern.edu/netlogo/). Share your ideas and strategies and win the game!
 
