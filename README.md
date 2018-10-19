@@ -13,9 +13,9 @@ You can see two kinds of tank here:
 
 In this project, the red tank has a temporary strongest strategy, which means it is very strong and you may lose it easily. You can not modify the code of the red one, but you can modify the blue one, and make it better than the red one.
 
-__If you have made your own red tank stronger than the blue tank__, You win! :collision:
+__If you have made your blue tank stronger than the red tank__, You win! :collision:
 
-You can submit your tank strategy (yours blue tank code) through a [pull request](https://yangsu.github.io/pull-request-tutorial/), and we will update our red tank code according to your blue tank code until there is another better blue tank to strategy beat yours. During this time, your github id and avatar will displaied in the `README.md` [here](https://github.com/huangyz0918/TankLogo#current-winner).
+You can submit your tank strategy (yours blue tank code) through a [pull request](https://yangsu.github.io/pull-request-tutorial/), and we will update our red tank code according to your blue tank code until there is another better blue tank to beat yours. During this time, your github id and avatar will displaied in the `README.md` [here](https://github.com/huangyz0918/TankLogo#current-winner).
 
 It's like a game of fighting, let's cheer, the first place is yours!
 
