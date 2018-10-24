@@ -315,7 +315,6 @@ to status-forward[v]
     set velocity (item 0 v)
   ]
   set degree 0
-  set acceleration random-float 1 - 3 ;是否随机加速度，避免敌人炮台追踪
   fd velocity
 end
 
